@@ -25,6 +25,7 @@ export default {
   },
   methods:{
     login(){
+        //可以看看这个this和that是啥
       var that=this;
       console.log(that.name+":"+that.password)  
     //   var user={

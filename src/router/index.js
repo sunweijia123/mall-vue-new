@@ -14,6 +14,11 @@ const routes = [
     name: "register",
     component: () => import("../views/Register.vue"),
   },
+  {
+    path: "/loginByEmail",
+    name: "loginByEmail",
+    component: () => import("../views/LoginByEmail")
+  }
 ];
 
 const router = new VueRouter({

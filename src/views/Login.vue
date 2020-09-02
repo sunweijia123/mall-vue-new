@@ -1,18 +1,21 @@
 <template>
-  <div id="login">
-    <h3 id="head">Mall For 武汉新洲区</h3>
-    <el-form ref="form" :rules="rules" :model="form" label-width="70px">
-      <el-form-item label="用户名" prop="name">
-        <el-input v-model="form.name" style="200px"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="password">
-        <el-input type="password" v-model="form.password"></el-input>
-      </el-form-item>
-      <el-form-item>
-    <el-button type="primary" @click="onSubmit">登陆</el-button>
-    <el-button @click="goRegister">注册</el-button>
-    </el-form-item>
-    </el-form>
+  <div id="login" class="all_wrap">
+    <div id="login_child" class="wrap_child">
+      <h2 id="head">Mall For 武汉新洲区</h2>
+      <el-form ref="form" :rules="rules" :model="form" label-width="70px">
+        <el-form-item label="用户名" prop="name">
+          <el-input v-model="form.name" style="200px"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+          <el-input type="password" v-model="form.password"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSubmit">登陆</el-button>
+          <el-button @click="goRegister">注册</el-button>
+          <span id="reg" @click="gologinByEmail">忘记密码</span>
+        </el-form-item>
+      </el-form>
+    </div>
   </div>
 </template>
 
@@ -22,58 +25,87 @@ export default {
     return {
       form: {
         name: "",
-        password:'',
-        code:''
+        password: "",
+        code: "",
       },
+      //校验
       rules: {
         name: [
           { required: true, message: "请输入用户名", trigger: "blur" },
-          { min: 3, max: 20, message: "长度在 3 到 20 个字符", trigger: "blur" }
+          {
+            min: 3,
+            max: 20,
+            message: "长度在 3 到 20 个字符",
+            trigger: "blur",
+          },
         ],
         password: [
           { required: true, message: "请输入密码", trigger: "blur" },
-          { min: 3, max: 20, message: "长度在 3 到 20 个字符", trigger: "blur" }
-        ]
-      }
+          {
+            min: 3,
+            max: 20,
+            message: "长度在 3 到 20 个字符",
+            trigger: "blur",
+          },
+        ],
+      },
     };
   },
   methods: {
+    //登陆
     onSubmit() {
-          //可以看看这个this和that是啥
-      var that=this;
-      console.log(that.form.name+":"+that.form.password)  
-      this.$http.get('http://118.178.254.125:8081/mall/login',{
-        params: {
-            name:this.form.name,
-            password:this.form.password
-        }
-
-      })
-      .then(function (params) {
-        console.log(params)
-        if(params.data.state === 1){
-          that.$router.push({
-          path:'/success'
+      var that = this;
+      console.log(that.form.name + ":" + that.form.password);
+      this.$http
+        .get("http://118.178.254.125:8081/mall/login", {
+          params: {
+            name: this.form.name,
+            password: this.form.password,
+          },
         })
-        }
-      })
-      .catch(function (reason) {
-        console.log(reason)
-      })
+        .then(function (params) {
+          console.log(params);
+          if (params.data.state === 1) {
+            setTimeout(() => {
+              that.$message({
+                message: "登陆成功",
+                type: "success",
+              });
+            }, 1);
+            that.$router.push({
+              path: "/success",
+            });
+          } else {
+            setTimeout(() => {
+              that.$message.error("账户名或密码错误");
+            }, 1);
+          }
+        })
+        .catch(function (reason) {
+          console.log(reason);
+        });
     },
-    goRegister(){
-      console.log('注册')
-      this.$router.replace('/register')
-    }
-  }
+    //跳转注册
+    goRegister() {
+      console.log("注册");
+      this.$router.replace("/register");
+    },
+    //跳转忘记密码
+    gologinByEmail() {
+      this.$router.replace("/loginByEmail");
+    },
+  },
 };
 </script>
 
 <style lang="scss" scope>
-    #login{
-      width: 20%;
-    }
-    #head{
-      text-align: center;
-    }
+#head {
+  text-align: center;
+}
+#reg {
+  color: red;
+  margin-left: 20%;
+  margin-top: 10%;
+  cursor: pointer;
+}
 </style>

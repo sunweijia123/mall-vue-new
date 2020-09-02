@@ -8,16 +8,24 @@ const routes = [
     path: "/",
     name: "Login",
     component: () => import("../views/Login.vue"),
+    meta: {title: '登录'}
   },
   {
     path: "/register",
     name: "register",
     component: () => import("../views/Register.vue"),
+    meta: {title: '注册'}
   },
   {
     path: "/loginByEmail",
     name: "loginByEmail",
     component: () => import("../views/LoginByEmail")
+  }
+  ,
+  {
+    path: "/menu",
+    name: "menu",
+    component: () => import("../views/menu")
   }
 ];
 

@@ -4,10 +4,10 @@
       <h2 id="head">Mall For 武汉新洲区</h2>
       <el-form ref="form" :rules="rules" :model="form" label-width="70px">
         <el-form-item label="用户名" prop="name">
-          <el-input v-model="form.name" style="200px"></el-input>
+          <el-input v-model="form.name" style="200px"  placeholder="用户名"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input type="password" v-model="form.password"></el-input>
+          <el-input type="password" v-model="form.password" placeholder="密码" @keyup.enter.native="onSubmit()"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit">登陆</el-button>
@@ -55,7 +55,6 @@ export default {
     //登陆
     onSubmit() {
       var that = this;
-      console.log(that.form.name + ":" + that.form.password);
       this.$http
         .get("http://118.178.254.125:8081/mall/login", {
           params: {
@@ -64,7 +63,6 @@ export default {
           },
         })
         .then(function (params) {
-          console.log(params);
           if (params.data.state === 1) {
             setTimeout(() => {
               that.$message({
@@ -73,7 +71,7 @@ export default {
               });
             }, 1);
             that.$router.push({
-              path: "/success",
+              path: "/menu",
             });
           } else {
             setTimeout(() => {
@@ -87,14 +85,13 @@ export default {
     },
     //跳转注册
     goRegister() {
-      console.log("注册");
       this.$router.replace("/register");
     },
     //跳转忘记密码
     gologinByEmail() {
       this.$router.replace("/loginByEmail");
-    },
-  },
+    }
+  }
 };
 </script>
 

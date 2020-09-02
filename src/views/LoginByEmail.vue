@@ -44,7 +44,6 @@ export default {
       };
       console.log(params);
       this.$http.post(url, params).then((res) => {
-          console.log(res)
         if (res.data.state == 1) {
           setTimeout(() => {
             that.$message({
@@ -52,10 +51,8 @@ export default {
               type: "success",
             });
           }, 1);
-        console.log('成功')
         this.$router.replace("/");
         } else {
-        console.log('失败')
           setTimeout(() => {
             that.$message.error("失败");
           }, 1);

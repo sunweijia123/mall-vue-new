@@ -8,24 +8,41 @@ const routes = [
     path: "/",
     name: "Login",
     component: () => import("../views/Login.vue"),
-    meta: {title: '登录'}
+    meta: { title: '登录' }
   },
   {
     path: "/register",
     name: "register",
     component: () => import("../views/Register.vue"),
-    meta: {title: '注册'}
+    meta: { title: '注册' }
   },
   {
     path: "/loginByEmail",
     name: "loginByEmail",
-    component: () => import("../views/LoginByEmail")
+    component: () => import("../views/LoginByEmail.vue")
   }
   ,
   {
     path: "/menu",
-    name: "menu",
-    component: () => import("../views/menu")
+    name: "Menu",
+    component: () => import("../views/Menu.vue"),
+    children: [
+      {
+        name: "UserInfoLog",
+        path: "/userInfoLog",
+        component: () => import("../views/menu/UserInfoLog.vue")
+      },
+      {
+        name: "Product",
+        path: "/productInfo",
+        component: () => import("../views/menu/Product.vue")
+      },
+      {
+        name: "Money",
+        path: "/moneyLog",
+        component: () => import("../views/menu/Money.vue")
+      }
+    ]
   }
 ];
 

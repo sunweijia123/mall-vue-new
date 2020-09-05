@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="all_wrap">
     <div id="login_child" class="wrap_child">
-      <h2 id="head">Mall For 武汉新洲区</h2>
+      <h1 id="head">Mall For 武汉新洲区</h1>
       <el-form ref="form" :rules="rules" :model="form" label-width="70px">
         <el-form-item label="用户名" prop="name">
           <el-input v-model="form.name" style="200px"  placeholder="用户名"></el-input>
@@ -97,6 +97,7 @@ export default {
 
 <style lang="scss" scope>
 #head {
+  padding:40px;
   text-align: center;
 }
 #reg {

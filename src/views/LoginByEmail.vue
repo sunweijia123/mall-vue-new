@@ -51,7 +51,7 @@ export default {
               type: "success",
             });
           }, 1);
-        this.$router.replace("/");
+          this.$router.replace("/");
         } else {
           setTimeout(() => {
             that.$message.error("失败");
@@ -63,5 +63,4 @@ export default {
 };
 </script>
 <style scoped>
-
 </style>

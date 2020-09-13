@@ -26,7 +26,7 @@ body {
   height: 100%;
 }
 .el-form-item__label{
-  color: white !important;
+  // color: white !important;
 }
 .all_wrap{
 width: 100%;

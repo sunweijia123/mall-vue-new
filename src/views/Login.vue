@@ -71,7 +71,7 @@ export default {
               });
             }, 1);
             that.$router.push({
-              path: "/menu",
+              path: "/menu/userInfoLog",
             });
           } else {
             setTimeout(() => {

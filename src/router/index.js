@@ -25,21 +25,21 @@ const routes = [
   {
     path: "/menu",
     name: "Menu",
-    component: () => import("../views/Menu.vue"),
+    component: () => import("../views/menu.vue"),
     children: [
       {
         name: "UserInfoLog",
-        path: "/userInfoLog",
+        path: "/menu/userInfoLog",
         component: () => import("../views/menu/UserInfoLog.vue")
       },
       {
         name: "Product",
-        path: "/productInfo",
+        path: "/menu/productInfo",
         component: () => import("../views/menu/Product.vue")
       },
       {
         name: "Money",
-        path: "/moneyLog",
+        path: "/menu/moneyLog",
         component: () => import("../views/menu/Money.vue")
       }
     ]

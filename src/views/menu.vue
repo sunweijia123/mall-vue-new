@@ -15,7 +15,7 @@
           >
             <el-menu-item index="/menu/userInfoLog">
               <i class="el-icon-menu"></i>
-              <span slot="title">客户拜访记录</span>
+              <span slot="title">客户信息</span>
             </el-menu-item>
             <el-menu-item index="/menu/productInfo">
               <i class="el-icon-menu"></i>

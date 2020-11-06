@@ -1,5 +1,5 @@
 // module.exports = {
-//     baseUrl:'/',
+//   baseUrl:'/',
 //   devServer: {
 //     host: "localhost",
 //     port: '8081',
@@ -12,6 +12,6 @@
 //             },
 //           },
 //       }
-    
+//
 //   },
 // };

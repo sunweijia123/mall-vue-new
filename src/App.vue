@@ -46,4 +46,8 @@ width: 100%;
   background: rgba(0,0,0,.5);
 }
 
+.paginationShow{
+  margin-top: 20px;
+  float: right;
+}
 </style>

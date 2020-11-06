@@ -6,15 +6,14 @@
       <el-button id="newCustomer" type="primary" @click="newCustomer">新增客户</el-button>
     </div>
     <Table :tableData="tableData" @transdata="getRefresh(arguments)" @edit="getEdit(arguments)"></Table>
-    <div id="foot">
-      <el-pagination
+    <el-pagination
         background
         layout="prev, pager, next"
         :current-page="pageNum"
         :page-count="pageSize"
         @current-change="handleCurrentChange"
-      ></el-pagination>
-    </div>
+        class="paginationShow"
+    ></el-pagination>
     <!-- 新增弹框 -->
     <el-dialog title="新洲" :visible.sync="dialogFormVisible">
       <el-form :model="form">
@@ -161,33 +160,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.m- {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
 #head {
   width: 100%;
   height: 6%;
   text-align: right;
 }
-// #main {
-//   flex: 1;
-//   overflow-y: scroll;
-//   background: #858585;
-// }
-#foot {
-  width: 100%;
-  height: 6%;
-  background: #808080;
-  display: flex;
-  align-items: center;
-  flex-direction: row-reverse;
-}
 .el-form-item__label {
   text-align: center !important;
-}
-#newCustomer {
 }
 </style>

@@ -34,72 +34,72 @@
           class="paginationShow">
       </el-pagination>
     </div>
-    <el-dialog :title="moealTitle" :visible.sync="isShow"  @close="closeMoeal">
-      <div v-if="moealType == 'add' || moealType == 'update'">
-        <div class="itemCell">
-          <span>产品名称:</span>
-          <el-input v-model="productInfo.productName" placeholder="请输入产品名称"></el-input>
-        </div>
-        <div class="itemCell">
-          <span>产品图片:</span>
-          <el-input v-model="productInfo.productImg" placeholder="请选择产品图片"></el-input>
-        </div>
-        <div class="itemCell">
-          <span>粘度规格:</span>
-          <el-input v-model="productInfo.productViscosity" placeholder="请输入粘度规格"></el-input>
-        </div>
-        <div class="itemCell">
-          <span>质量级别:</span>
-          <el-input v-model="productInfo.productLevel" placeholder="请输入质量级别"></el-input>
-        </div>
-        <div class="itemCell">
-          <span>产品类型:</span>
-          <el-input v-model="productInfo.productType" placeholder="请输入产品类型"></el-input>
-        </div>
-
-        <div v-if="moealType  == 'add'">
-          <el-divider></el-divider>
-          <div class="packingList" v-for="(item,index) in productInfo.productPackingList">
-          <div class="itemCell itemList" >
-            <span>包装规格:</span>
-            <el-input v-model="item.pack" placeholder="请输入包装规格"></el-input>
-            <i  v-if="index >= 1" class="el-icon-error"  @click="deletePacking(index)"></i>
-            <i  class="el-icon-circle-plus" @click="addPacking"></i>
+      <el-dialog :title="moealTitle" :visible.sync="isShow"  @close="closeMoeal">
+        <div v-if="moealType == 'add' || moealType == 'update'">
+          <div class="itemCell">
+            <span>产品名称:</span>
+            <el-input v-model="productInfo.productName" placeholder="请输入产品名称"></el-input>
           </div>
           <div class="itemCell">
-            <span>出厂价格:</span>
-            <el-input v-model="item.price" placeholder="请输入出厂价格"></el-input>
+            <span>产品图片:</span>
+            <el-input v-model="productInfo.productImg" placeholder="请选择产品图片"></el-input>
+          </div>
+          <div class="itemCell">
+            <span>粘度规格:</span>
+            <el-input v-model="productInfo.productViscosity" placeholder="请输入粘度规格"></el-input>
+          </div>
+          <div class="itemCell">
+            <span>质量级别:</span>
+            <el-input v-model="productInfo.productLevel" placeholder="请输入质量级别"></el-input>
+          </div>
+          <div class="itemCell">
+            <span>产品类型:</span>
+            <el-input v-model="productInfo.productType" placeholder="请输入产品类型"></el-input>
+          </div>
+
+          <div v-if="moealType  == 'add'">
+            <el-divider></el-divider>
+            <div class="packingList" v-for="(item,index) in productInfo.productPackingList">
+              <div class="itemCell itemList" >
+                <span>包装规格:</span>
+                <el-input v-model="item.pack" placeholder="请输入包装规格"></el-input>
+                <i  v-if="index >= 1" class="el-icon-error"  @click="deletePacking(index)"></i>
+                <i  class="el-icon-circle-plus" @click="addPacking"></i>
+              </div>
+              <div class="itemCell">
+                <span>出厂价格:</span>
+                <el-input v-model="item.price" placeholder="请输入出厂价格"></el-input>
+              </div>
+            </div>
           </div>
         </div>
-        </div>
-      </div>
-      <div v-if="moealType == 'getBy'">
-        <el-button  @click="addPrice(priceActiveId)">新增价格</el-button>
-        <el-table
-            :data="priceData">
-          <template v-for="(item,index) in priceList">
-            <el-table-column
-                :key="index"
-                :prop="item.prop"
-                :label="item.label">
-            </el-table-column>
-          </template>
-          <el-table-column
-              label="操作">
-            <template slot-scope="scope">
-              <el-button @click="updateItemPrice(scope.row)" type="text" size="small">修改</el-button>
-              <el-button @click="deldateItemPrice(scope.row)" type="text" size="small">删除</el-button>
+        <div v-if="moealType == 'getBy'">
+          <el-button  @click="addPrice(priceActiveId)">新增价格</el-button>
+          <el-table
+              :data="priceData">
+            <template v-for="(item,index) in priceList">
+              <el-table-column
+                  :key="index"
+                  :prop="item.prop"
+                  :label="item.label">
+              </el-table-column>
             </template>
-          </el-table-column>
-        </el-table>
-      </div>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="closeMoeal()">取消</el-button>
-        <el-button type="primary" @click="determine()">确定</el-button>
-      </div>
-    </el-dialog>
+            <el-table-column
+                label="操作">
+              <template slot-scope="scope">
+                <el-button @click="updateItemPrice(scope.row)" type="text" size="small">修改</el-button>
+                <el-button @click="deldateItemPrice(scope.row)" type="text" size="small">删除</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="closeMoeal()">取消</el-button>
+          <el-button type="primary" @click="determine()">确定</el-button>
+        </div>
+      </el-dialog>
     <!--二层弹框-->
-    <el-dialog :title="moealPiceTitle" :visible.sync="priceIsShow"  @close="closeMoeal">
+    <el-dialog :title="moealPiceTitle" :visible.sync="priceIsShow"   @close="closePriceMoeal">
       <div>
         <div class="packingList">
           <div class="itemCell" >
@@ -328,6 +328,7 @@ export default {
         }).then((res) => {
           if(res.data.message == "ok"){
             this.priceIsShow=false;
+            this.closePriceMoeal();
             this.getProductAttrList(this.priceActiveId);
             this.$message.success('修改成功!');
           }
@@ -481,7 +482,7 @@ export default {
      */
     updateItemPrice(info){
       this.priceInfo={
-        priceId :info.priceActiveId,
+        priceId :this.priceActiveId,
         pricePacking:info.pricePacking,
         priceEx:info.priceEx,
       }

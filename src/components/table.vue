@@ -15,8 +15,8 @@
           <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
           <el-button @click="editClick(scope.row)" type="text" size="small">编辑</el-button>
           <el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>
-          <el-button type="text" size="small">增加拜访记录</el-button>
-          <el-button type="text" size="small">查看拜访记录</el-button>
+          <el-button @click="addRecord(scope.row)" type="text" size="small">增加拜访记录</el-button>
+          <el-button @click="handRecord(scope.row)" type="text" size="small">查看拜访记录</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -28,13 +28,11 @@ export default {
   data() {
     return {
       pageNum: 1, //当前页
-      // pageSize: 1, //总页数
-      // table: [],
     };
   },
   methods: {
     handleClick(row) {
-      console.log(row);
+      this.$emit('handleClick',row)
     },
     //删除
     delClick(row) {
@@ -78,23 +76,14 @@ export default {
           console.log(reason);
         });
     },
-    //刷新接口
-    // refershInterface() {
-    //   this.$http
-    //     .get("http://118.178.254.125:8081/mall/client/getClientList", {
-    //       params: {
-    //         page: this.pageNum,
-    //       },
-    //     })
-    //     .then((params) => {
-    //       console.log(params);
-    //       this.table = params.data.data;
-    //       this.pageSize = params.data.pageSize;
-    //     })
-    //     .catch(function (reason) {
-    //       console.log(reason);
-    //     });
-    // },
+    //增加拜访
+    addRecord(row){
+      this.$emit('addRecord',row)
+    },
+    //查看拜访
+    handRecord(row){
+      this.$emit('handRecord',row)
+    }
   },
 };
 </script>

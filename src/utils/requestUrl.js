@@ -8,5 +8,5 @@ export  const  delProduct= baseUrl+'product/delProduct' //删除产品
 export  const  addProductAttr= baseUrl+'product/addProductAttr' //新增包装规格和出厂价格
 export  const  modifyProductAttr= baseUrl+'product/modifyProductAttr' //修改包装规格和出厂价格
 export  const  delProductAttr= baseUrl+'product/delProductAttr' //删除包装规格和出厂价格
-export  const  getProductById= baseUrl+'product/getProductById' //产品回显（编辑使用）
-export  const  getProductAttrById= baseUrl+'product/getProductAttrById' //产品包装规格和出厂价格回显（编辑使用）
+// export  const  getProductById= baseUrl+'product/getProductById' //产品回显（编辑使用）
+// export  const  getProductAttrById= baseUrl+'product/getProductAttrById' //产品包装规格和出厂价格回显（编辑使用）

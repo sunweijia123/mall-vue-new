@@ -24,7 +24,7 @@
       class="paginationShow"
     ></el-pagination>
     <!-- 新增弹框 -->
-    <el-dialog title="新洲" :visible.sync="dialogFormVisible">
+    <el-dialog title="新增客户信息" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="姓名:" :label-width="formLabelWidth">
           <el-input
@@ -382,10 +382,29 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.m- {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 #head {
   width: 100%;
   height: 6%;
   text-align: right;
+}
+// #main {
+//   flex: 1;
+//   overflow-y: scroll;
+//   background: #858585;
+// }
+#foot {
+  width: 100%;
+  height: 6%;
+  background: #808080;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
 }
 .el-form-item__label {
   text-align: center !important;

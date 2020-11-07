@@ -4,6 +4,10 @@
       <el-button class="addCustomer" type="primary" @click="addCustomer">新增产品</el-button>
       <el-table
           :data="tableData">
+          <el-table-column
+              type="index"
+              label="序号">
+          </el-table-column>
         <template v-for="(item,index) in titleList">
           <el-table-column
               :key="index"
@@ -42,7 +46,20 @@
           </div>
           <div class="itemCell">
             <span>产品图片:</span>
-            <el-input v-model="productInfo.productImg" placeholder="请选择产品图片"></el-input>
+            <el-upload
+                class="upload-demo"
+                style="display: inline-block"
+                :file-list="filelist"
+                accept="image/png,image/jpg,image/jpeg,image/gif,image/PNG,image/JPG,image/JPEG,image/GIF"
+                action="http://118.178.254.125:8081/images/upload"
+                :on-success = 'uploadSuccess'
+                :limit="1"
+                :disabled="filelist.length >= 1"
+                :before-upload="beforeAvatarUpload"
+            >
+              <el-button size="small" :disabled="filelist.length >= 1" type="primary">点击上传</el-button>
+              <span>只能上传一张</span>
+            </el-upload>
           </div>
           <div class="itemCell">
             <span>粘度规格:</span>
@@ -129,7 +146,6 @@ export default {
   data() {
     return {
       titleList: [
-        {label: "序号", prop: 'productId'},
         {label: "产品名称", prop: 'productName'},
         {label: "产品图片", prop: 'productImg'},
         {label: "粘度规格", prop: 'productViscosity'},
@@ -170,7 +186,7 @@ export default {
       moealPiceTitle:"",
       moealPiceType:"add",
       priceIsShow:false,
-
+      filelist:[],//文件参数
     }
   },
   methods: {
@@ -322,7 +338,7 @@ export default {
     modifyProductAttr(){
       if(this.checkInfoPirce()){
         this.$http.post(modifyProductAttr, {
-          productId:this.priceInfo.priceId,
+          id:this.priceInfo.priceId,
           pack:this.priceInfo.pricePacking,
           price:parseInt(this.priceInfo.priceEx),
         }).then((res) => {
@@ -453,6 +469,7 @@ export default {
           {pack:"",price:""}
         ]
       }
+      this.filelist=[];
     },
     /**
      * 模态框添加
@@ -532,7 +549,26 @@ export default {
       this.priceIsShow=true;
       this.moealPiceTitle="添加包装规格和出厂价格"
       this.moealPiceType='add';
-    }
+    },
+    /**
+     * 上传图片成功
+     */
+    uploadSuccess(response, file){
+      this.filelist.push({name:file.name, url: response})
+      this.productInfo.productImg = response;
+    },
+    /**
+     *  上传验证
+     * @param file
+     * @returns {boolean}
+     */
+    beforeAvatarUpload(file) {
+      const isLt10M = file.size / 1024 / 1024 < 10;
+      if (!isLt10M) {
+        this.$message.error("上传头像图片大小不能超过 10MB!");
+      }
+      return isLt10M;
+    },
   },
   created() {
     this.getList();

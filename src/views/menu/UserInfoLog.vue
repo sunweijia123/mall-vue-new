@@ -86,7 +86,7 @@
       </div>
     </el-dialog>
     <!-- 新增拜访弹框 -->
-    <el-dialog title="拜访记录" :visible.sync="recordFlag">
+    <el-dialog title="拜访记录" :visible.sync="recordFlag" class="elD">
       <el-form
         :model="record"
         :rules="rules"
@@ -94,7 +94,7 @@
         label-width="100px"
         class="demo-ruleForm"
       >
-        <el-form-item label="活动时间" required>
+        <el-form-item label="拜访时间" required>
           <el-col :span="11">
             <el-form-item prop="date1">
               <el-date-picker
@@ -118,7 +118,7 @@
             </el-form-item>
           </el-col>
         </el-form-item>
-        <el-form-item label="活动形式" prop="desc">
+        <el-form-item label="拜访内容" prop="desc">
           <el-input type="textarea" v-model="record.desc" :rows="5"></el-input>
         </el-form-item>
         <el-form-item>
@@ -130,11 +130,12 @@
       </el-form>
     </el-dialog>
     <!-- 查看拜访记录 -->
+    <div class="dialogHeight">
     <el-dialog title="查看拜访记录弹框" :visible.sync="seeRecord">
       <el-table :data="recordList" border style="width: 100%; margin-top: 20px">
-        <el-table-column type="index" label="序号"></el-table-column>
-        <el-table-column prop="visitTime" label="时间"></el-table-column>
-        <el-table-column prop="visitInfo" label="活动形式"></el-table-column>
+        <el-table-column type="index" label="序号" width="80"></el-table-column>
+        <el-table-column prop="visitTime" label="拜访时间"></el-table-column>
+        <el-table-column prop="visitInfo" label="拜访内容"></el-table-column>
       </el-table>
       <el-pagination
         background
@@ -145,6 +146,8 @@
         class="paginationShow"
       ></el-pagination>
     </el-dialog>
+    </div>
+
   </div>
 </template>
 <script>
@@ -414,7 +417,7 @@ export default {
 .el-col-2 {
   width: 10px;
 }
-.el-dialog {
+.dialogHeight .el-dialog {
   height: 75%;
 }
 </style>

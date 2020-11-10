@@ -1,7 +1,7 @@
 <template>
   <div class="Money">
     <div>
-      <el-select v-model="customerSelect" placeholder="请选择客户列表">
+      <el-select v-model="customerSelect" clearable placeholder="请选择客户列表">
         <el-option
             v-for="item in customerList"
             :key="item.id"
@@ -9,7 +9,7 @@
             :value="item.id">
         </el-option>
       </el-select>
-      <el-select class="clearanceCell" v-model="productSelect" placeholder="请选择产品列表">
+      <el-select class="clearanceCell" clearable v-model="productSelect" placeholder="请选择产品列表">
         <el-option
             v-for="item in productList"
             :key="item.id"
@@ -268,6 +268,11 @@ export default {
         },
       }).then((res) => {
         if (res.status == 200) {
+          if(res.data.data == null){
+            this.moneyInfo.productPackage ="";
+            this.moneyInfo.price="";
+            return;
+          }
           this.moneyInfo.productPackage = res.data.data.pack;
           this.moneyInfo.price = res.data.data.price;
         }
@@ -434,7 +439,10 @@ export default {
      * 查询流水
      */
     selectFlowing(){
-      this.getDealInfoList(this.selectTime[0],this.selectTime[1],this.customerSelect,this.productSelect);
+      if(this.selectTime != null && this.selectTime.length >= 1 ){
+        this.getDealInfoList(this.selectTime[0],this.selectTime[1],this.customerSelect,this.productSelect);
+      }
+      this.getDealInfoList(null,null,this.customerSelect,this.productSelect);
     },
     /***
      * 修改流水

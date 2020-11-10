@@ -100,6 +100,10 @@
           <el-button  @click="addPrice(priceActiveId)">新增价格</el-button>
           <el-table
               :data="priceData">
+            <el-table-column
+                type="index"
+                label="序号">
+            </el-table-column>
             <template v-for="(item,index) in priceList">
               <el-table-column
                   :key="index"
@@ -173,7 +177,7 @@ export default {
       },
       priceData:[],
       priceList:[
-        {label: "序号", prop: 'priceId'},
+        // {label: "序号", prop: 'priceId'},
         {label: "包装规格", prop: 'pricePacking'},
         {label: "出厂价格", prop: 'priceEx'},
       ],

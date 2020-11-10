@@ -8,6 +8,12 @@
               type="index"
               label="序号">
           </el-table-column>
+        <el-table-column
+            label="产品图片">
+          <template slot-scope="scope">
+            <img :src="getProductImg(scope)" style="width: 60%;height: 60px;"/>
+          </template>
+        </el-table-column>
         <template v-for="(item,index) in titleList">
           <el-table-column
               :key="index"
@@ -147,7 +153,6 @@ export default {
     return {
       titleList: [
         {label: "产品名称", prop: 'productName'},
-        {label: "产品图片", prop: 'productImg'},
         {label: "粘度规格", prop: 'productViscosity'},
         {label: "质量级别", prop: 'productLevel'},
         {label: "产品类别", prop: 'productType'},
@@ -173,6 +178,7 @@ export default {
         {label: "出厂价格", prop: 'priceEx'},
       ],
       priceInfo:{
+        id:"",
         priceId :"",
         pricePacking:"",
         priceEx:"",
@@ -337,10 +343,12 @@ export default {
      */
     modifyProductAttr(){
       if(this.checkInfoPirce()){
+        let this_=this;
         this.$http.post(modifyProductAttr, {
-          id:this.priceInfo.priceId,
-          pack:this.priceInfo.pricePacking,
-          price:parseInt(this.priceInfo.priceEx),
+          id:this_.priceInfo.id,
+          productId:this_.priceInfo.priceId,
+          pack:this_.priceInfo.pricePacking,
+          price:parseInt(this_.priceInfo.priceEx),
         }).then((res) => {
           if(res.data.message == "ok"){
             this.priceIsShow=false;
@@ -407,6 +415,9 @@ export default {
       this.isShow=true;
       this.priceActiveId=item.productId
       this.getProductAttrList(item.productId);
+    },
+    getProductImg(item){
+      return item.row.productImg;
     },
     /**
      * 添加用户
@@ -499,6 +510,7 @@ export default {
      */
     updateItemPrice(info){
       this.priceInfo={
+        id:info.priceId,
         priceId :this.priceActiveId,
         pricePacking:info.pricePacking,
         priceEx:info.priceEx,
@@ -526,6 +538,7 @@ export default {
     },
     closePriceMoeal(){
       this.priceInfo={
+        id:"",
         priceId :"",
         pricePacking:"",
         priceEx:"",

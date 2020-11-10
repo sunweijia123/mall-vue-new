@@ -425,7 +425,11 @@ export default {
      */
     changePage(pageindex){
       this.pageIndex=pageindex;
-      this.getDealInfoList(this.selectTime[0],this.selectTime[1],this.customerSelect,this.productSelect);
+      if(this.selectTime != null && this.selectTime.length >= 1 ){
+        this.getDealInfoList(this.selectTime[0],this.selectTime[1],this.customerSelect,this.productSelect);
+        return;
+      }
+      this.getDealInfoList(null,null,this.customerSelect,this.productSelect);
     },
     /**
      * 新增流水
@@ -441,6 +445,7 @@ export default {
     selectFlowing(){
       if(this.selectTime != null && this.selectTime.length >= 1 ){
         this.getDealInfoList(this.selectTime[0],this.selectTime[1],this.customerSelect,this.productSelect);
+        return;
       }
       this.getDealInfoList(null,null,this.customerSelect,this.productSelect);
     },

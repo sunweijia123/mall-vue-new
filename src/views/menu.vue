@@ -23,7 +23,15 @@
             </el-menu-item>
             <el-menu-item index="/menu/moneyLog">
               <i class="el-icon-setting"></i>
-              <span slot="title">账户流水</span>
+              <span slot="title">出货明细</span>
+            </el-menu-item>
+            <el-menu-item index="/menu/account">
+              <i class="el-icon-setting"></i>
+              <span slot="title">账户信息</span>
+            </el-menu-item>
+            <el-menu-item index="/menu/people">
+              <i class="el-icon-setting"></i>
+              <span slot="title">股东信息</span>
             </el-menu-item>
           </el-menu>
         </el-col>
@@ -37,12 +45,7 @@
 <script>
 export default {
   methods: {
-    // handleOpen(key, keyPath) {
-    //   console.log(key, keyPath);
-    // },
-    // handleClose(key, keyPath) {
-    //   console.log(key, keyPath);
-    // },
+
   },
 };
 </script>

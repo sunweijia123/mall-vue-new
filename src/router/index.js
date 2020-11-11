@@ -41,6 +41,17 @@ const routes = [
         name: "Money",
         path: "/menu/moneyLog",
         component: () => import("../views/menu/Money.vue")
+      },
+      {
+        name: "Account",
+        path: "/menu/account",
+        component: () => import("../views/menu/Account.vue")
+      }
+      ,
+      {
+        name: "People",
+        path: "/menu/people",
+        component: () => import("../views/menu/People.vue")
       }
     ]
   }

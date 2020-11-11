@@ -4,7 +4,7 @@
       <el-select v-model="customerSelect" clearable placeholder="请选择客户列表">
         <el-option
             v-for="item in customerList"
-            :key="item.id"
+             :key="item.id"
             :label="item.name"
             :value="item.id">
         </el-option>
